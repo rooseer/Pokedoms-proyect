@@ -17,7 +17,7 @@ public class Pokedom {
     Pokedom(String nombre, String familia) {
         this(nombre,familia,0f,0f);
     }
-
+    
     Pokedom(String nombre, String familia, float ataque, float defensa) {
         this.nombre=nombre;
         this.familia=familia;

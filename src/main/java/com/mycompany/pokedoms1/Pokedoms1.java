@@ -4,14 +4,41 @@
 
 package com.mycompany.pokedoms1;
 
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author Admin
  */
 public class Pokedoms1 {
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+        ArrayList<String> pokedoms = new ArrayList<String>();
+        
+        
+        switch(args[1].toLowerCase()){
+            case "add":
+                if(args.length ==6){
+                    Pokedom miPokedom = new Pokedom (args[2], args[3],Float.parseFloat(args[4]), Float.parseFloat(args[5]));
+                    FileWriter archivo = new FileWriter(args[0]);
+                    archivo.write("\n" + args[2] + " " + args[3] + " " + args[4] + " " + args[5]);
+                    archivo.close();
+                    
 
-    public static void main(String[] args) {
-         String noms[] = new String[] {
+    
+                }
+                break;
+            case "describe":
+                break;
+            }
+        /*String noms[] = new String[] {
                 "Kandentium",
                 "Demantima",
                 "Eufrotructon",
@@ -33,7 +60,7 @@ public class Pokedoms1 {
         for (int i = 0; i < noms.length; i++) {
             lista[i] = new Pokedom(noms[i], families[i], atacs[i], defenses[i]);
         }
-
+        
         PokedomsBD db = new PokedomsBD(lista);
         Pokedom pokedomDemanat=db.describe(args[0]);
         if (pokedomDemanat!=null) {
@@ -43,7 +70,7 @@ public class Pokedoms1 {
             System.out.println("Defensa: "+pokedomDemanat.getDefensa());
         } else {
             System.out.println("No conec aquest Pokedom.");
-        }
+        }*/
     }
     }
 
