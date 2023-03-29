@@ -6,7 +6,7 @@ package com.mycompany.pokedoms1;
 
 /**
  *
- * @author Admin
+ * @author roser roman
  */
 public class Pokedom {
     private String nombre;
@@ -18,7 +18,7 @@ public class Pokedom {
         this(nombre,familia,0f,0f);
     }
     
-    Pokedom(String nombre, String familia, float ataque, float defensa) {
+    public Pokedom(String nombre, String familia, float ataque, float defensa) {
         this.nombre=nombre;
         this.familia=familia;
         this.ataque=ataque;
