@@ -36,38 +36,46 @@ public class PokedomsBD {
             System.out.println("Atac: "+buscarPokedom(nombre).getAtaque());
             System.out.println("Defensa: "+buscarPokedom(nombre).getDefensa());
             }else{
-                System.out.println("No existe ningun pokedom con ese nombre");
-                }
+                System.out.println("ERROR: no se ha encontrado ningun pokedom con este nombre");
+                }  
 
     }
   
     public void leerArchivo(String nombreFichero) throws FileNotFoundException, IOException{
-        File file = new File(nombreFichero);
-            if (file.exists()){
-             FileReader reader = new FileReader(file);
-             BufferedReader bufferedReader = new BufferedReader(reader);
-             String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                String[] parts = line.split(" ");
-                if(parts.length == 4){
-                    Pokedom newPokedom = new Pokedom(parts[0], parts[1], Float.parseFloat(parts[2]), Float.parseFloat(parts[3]));
-                    listaPokedoms.add(newPokedom);
+        try{
+            File file = new File(nombreFichero);
+                if (file.exists()){
+                 FileReader reader = new FileReader(file);
+                 BufferedReader bufferedReader = new BufferedReader(reader);
+                 String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                    String[] parts = line.split(" ");
+                    if(parts.length == 4){
+                        Pokedom newPokedom = new Pokedom(parts[0], parts[1], Float.parseFloat(parts[2]), Float.parseFloat(parts[3]));
+                        listaPokedoms.add(newPokedom);
+                    }
+                    }
+                }else{
+                    System.out.println("El fichero indicado no existe");
                 }
-                }
-            }else{
-                System.out.println("El fichero indicado no existe");
-            }
-            }    
+        }catch(Exception e){
+            System.out.println("Error: "+ e.getMessage());
+        }
+    }
     public void anadirPokedomNuevo(String nombreFichero, String nombrePokedom, String familia , float ataque , float defensa) throws IOException{
-        if (buscarPokedom(nombrePokedom) == null){
-            FileWriter archivo = new FileWriter(nombreFichero, true);
-            archivo.write( nombrePokedom + " " + familia + " " + ataque + " " + defensa + "\n" );
-            archivo.close();
-            Pokedom miPokedom = new Pokedom(nombrePokedom, familia, ataque, defensa);
-            listaPokedoms.add(miPokedom);
-            System.out.println("Pokedom añadido");
-        }else{
-            System.out.println("Ya existe un pokedom con ese nombre");
+        try{
+            if (buscarPokedom(nombrePokedom) == null){
+                FileWriter archivo = new FileWriter(nombreFichero, true);
+                archivo.write( nombrePokedom + " " + familia + " " + ataque + " " + defensa + "\n" );
+                archivo.close();
+                Pokedom miPokedom = new Pokedom(nombrePokedom, familia, ataque, defensa);
+                listaPokedoms.add(miPokedom);
+                System.out.println("Pokedom añadido");
+            }else{
+                System.out.println("Ya existe un pokedom con ese nombre");
+            }
+        }catch(Exception e){
+            System.out.println("Error: "+ e.getMessage());
         }
     }
     
